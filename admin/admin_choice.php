@@ -26,7 +26,7 @@
           <div class="card-body">
             <h5 class="card-title">Insert Room Information</h5>
             <p class="card-text">Add details about a new room.</p>
-            <a href="room_info.php" class="btn btn-primary btn-block">Go to Room Information</a>
+            <a href="room_info.php" class="btn btn-primary btn-block">Go to Room Insertion</a>
           </div>
         </div>
       </div>
@@ -35,7 +35,7 @@
           <div class="card-body">
             <h5 class="card-title">Insert Employee Information</h5>
             <p class="card-text">Add details about a new employee.</p>
-            <a href="employee_info.php" class="btn btn-primary btn-block">Go to Employee Information</a>
+            <a href="employee_info.php" class="btn btn-primary btn-block">Go to Employee Insertion</a>
           </div>
         </div>
       </div>
