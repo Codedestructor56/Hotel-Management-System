@@ -36,7 +36,6 @@ if ($result && mysqli_num_rows($result) > 0) {
 } else {
     $deluxeRooms = [];
 }
-
 mysqli_close($conn);
 ?>
 
@@ -73,7 +72,7 @@ mysqli_close($conn);
             <th>Price</th>
             <th>Status</th>
             <th>Capacity</th>
-            <th>Action</th>
+            <th>Action</th> 
           </tr>
         </thead>
         <tbody>
@@ -83,7 +82,13 @@ mysqli_close($conn);
               <td><?php echo $room['price']; ?></td>
               <td><?php echo $room['status']; ?></td>
               <td><?php echo $room['capacity']; ?></td>
-              <td><a href="reservation.php?room_id=<?php echo $room['room_no']; ?>&cust_id=<?php echo $cust_id; ?>" class="btn btn-primary">Book Room</a></td>
+              <?php if ($room['status'] != "booked") : ?>
+              <td>
+                <a href="reservation.php?room_id=<?php echo $room['room_no']; ?>&cust_id=<?php echo $cust_id; ?>" class="btn btn-primary">Book Room</a>
+              </td>
+              <?php else : ?>
+                <td>Already booked</td>
+              <?php endif; ?>
             </tr>
           <?php endforeach; ?>
         </tbody>
@@ -105,15 +110,20 @@ mysqli_close($conn);
           </tr>
         </thead>
         <tbody>
-          <?php foreach ($deluxeRooms as $room) : ?>
-            <tr>
-              <td><?php echo $room['room_no']; ?></td>
-              <td><?php echo $room['price']; ?></td>
-              <td><?php echo $room['status']; ?></td>
-              <td><?php echo $room['capacity']; ?></td>
-              <td><a href="reservation.php?room_id=<?php echo $room['room_no']; ?>&cust_id=<?php echo $cust_id; ?>" class="btn btn-primary">Book Room</a></td>
-            </tr>
-          <?php endforeach; ?>
+        <?php foreach ($deluxeRooms as $room) : ?>
+        <tr>
+        <td><?php echo $room['room_no']; ?></td>
+        <td><?php echo $room['price']; ?></td>
+        <td><?php echo $room['status']; ?></td>
+        <td><?php echo $room['capacity']; ?></td>
+        <?php if ($room['status'] != "booked") : ?>
+            <td>
+                <a href="reservation.php?room_id=<?php echo $room['room_no']; ?>&cust_id=<?php echo $cust_id; ?>" class="btn btn-primary">Book Room</a>
+            </td>
+        <?php else : ?>
+            <td>Already booked</td>
+        <?php endif; ?>
+        <?php endforeach; ?>
         </tbody>
       </table>
     <?php else : ?>

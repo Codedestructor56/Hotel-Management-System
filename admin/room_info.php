@@ -43,7 +43,10 @@
       </div>
       <div class="form-group">
         <label for="status">Status:</label>
-        <input type="text" class="form-control" id="status" name="status" required>
+        <select class="form-control" id="status" name="status">
+          <option value="booked">booked</option>
+          <option value="vacant">vacant</option>
+        </select>
       </div>
       <div class="form-group">
         <label for="capacity">Capacity:</label>
