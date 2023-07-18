@@ -60,12 +60,24 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     conn($conn, $sequence_insert);
     $res_id = mysqli_insert_id($conn);
 
+    $sql = "SELECT * FROM room_info WHERE room_id = '$room_id'";
+    $result = mysqli_query($conn, $sql);
+
+    /*just testing if room id actually works:
+      if ($result && mysqli_num_rows($result) > 0) {
+        $rooms = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    } else {
+        $rooms = [];
+    }
+    foreach($rooms as $i){
+      echo $i['room_type'];
+    }*/
+
     $sequence_insert1 = "INSERT INTO seq_service VALUES (NULL)";
     conn($conn, $sequence_insert1);
     $service_id = mysqli_insert_id($conn);
 
-
-    $reservationInsert = "INSERT INTO RESERVATION (res_id, check_out_date, check_in_date, no_of_guests, payment_status) VALUES ('$res_id', '$check_out_date', '$check_in_date', '$no_of_guests', '$payment_status')";
+    $reservationInsert = "INSERT INTO RESERVATION (res_id, room_id, check_out_date, check_in_date, no_of_guests, payment_status) VALUES ('$res_id','$room_id', '$check_out_date', '$check_in_date', '$no_of_guests', '$payment_status')";
     mysqli_query($conn, $reservationInsert);
 
     $serviceInsert = "INSERT INTO SERVICE (res_id, service_id, s_name, s_price, availability, des) VALUES ('$res_id', '$service_id', 'room', '$price', '$status', 'Service Description')";
