@@ -73,9 +73,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     } elseif ($roomType === "deluxe") {
         $roomDelete = "DELETE FROM DELUXE WHERE room_no = '$roomNo';";
     }
-
+    $room_info_delete="DELETE FROM room_info WHERE room_id='$roomNo'";
     conn($conn, $roomDelete);
-
+    conn($conn,$room_info_delete);
     unset($roomNo);
     unset($roomType);
 

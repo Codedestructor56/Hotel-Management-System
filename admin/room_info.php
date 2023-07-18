@@ -96,10 +96,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         } elseif ($roomType === "deluxe") {
             $roomInsert = "INSERT INTO DELUXE (room_no, price, status, capacity, hotel_id) VALUES ('$room_no', '$price', '$status', '$capacity', '$hotelId')";
         }
-
+        $room_info_insert= "INSERT INTO ROOM_INFO(room_id,room_type) VALUES ('$room_no','$roomType')";
         if ($roomInsert) {
             conn($conn, $roomInsert);
 
+            conn($conn,$room_info_insert);
             unset($hotelName);
             unset($roomNo);
             unset($roomType);
