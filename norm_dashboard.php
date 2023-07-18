@@ -102,12 +102,11 @@ if (isset($_POST['search'])) {
         </ul>
       </div>
     </nav>
-    <form method="POST" action="norm_dashboard.php">
-      <div class="search-bar">
-        <input type="text" class="form-control" name="search" placeholder="Search..."
-          value="<?php echo isset($_POST['search']) ? $_POST['search'] : ''; ?>">
-        <button type="submit" class="btn btn-primary" >Search</button>
-      </div>
+    <form id="search-form" method="get" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+      <input type="hidden" name="cust_id" value="<?php echo $_GET['cust_id']; ?>">
+      <input type="text" class="form-control" name="search" placeholder="Search..."
+         value="<?php echo isset($_GET['search']) ? $_GET['search'] : ''; ?>">
+      <button type="submit" class="btn btn-primary">Search</button>
     </form>
     <div class="hotel-list">
       <?php if (count($filteredHotels) > 0) : ?>
@@ -134,6 +133,7 @@ if (isset($_POST['search'])) {
       <?php endif; ?>
     }
   </script>
+ 
 </body>
 
 </html>
