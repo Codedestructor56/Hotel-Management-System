@@ -107,10 +107,11 @@ if (isset($_POST['search'])) {
     <?php if (isset($_GET['cust_id'])): ?>
     <input type="hidden" name="cust_id" value="<?php echo $_GET['cust_id']; ?>">
     <?php endif; ?>
-      <input type="text" class="form-control" name="search" placeholder="Search..."
-         value="<?php echo isset($_GET['search']) ? $_GET['search'] : ''; ?>">
-      <button type="submit" class="btn btn-primary">Search</button>
+    <input type="text" class="form-control" name="search" placeholder="Search..."
+       value="<?php echo isset($_GET['search']) ? $_GET['search'] : ''; ?>">
+    <button type="submit" class="btn btn-primary" formmethod="post" formaction="norm_dashboard.php?<?php echo $_SERVER['QUERY_STRING']; ?>">Search</button>
     </form>
+
     <div class="hotel-list">
       <?php if (count($filteredHotels) > 0) : ?>
         <?php foreach ($filteredHotels as $hotel) : ?>
